@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'responsive.dart';
+import 'feedback.dart';
 import 'state/app_state.dart';
 import 'theme.dart';
 
@@ -537,35 +538,72 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: 8),
-      children: const [
-        Padding(
+      children: [
+        const Padding(
           padding: EdgeInsets.fromLTRB(16, 12, 16, 4),
           child: Text('Playlists', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
         ),
-        ListTile(
+        const ListTile(
           leading: Icon(Icons.playlist_add),
           title: Text('Add playlist'),
           subtitle: Text('Xtream Codes login or M3U URL — coming next'),
         ),
-        Divider(),
-        Padding(
+        const Divider(),
+        const Padding(
           padding: EdgeInsets.fromLTRB(16, 12, 16, 4),
           child: Text('Appearance', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
         ),
-        ListTile(
+        const ListTile(
           leading: Icon(Icons.dark_mode),
           title: Text('Theme'),
           subtitle: Text('Dark'),
         ),
-        Divider(),
-        Padding(
+        const Divider(),
+        const Padding(
+          padding: EdgeInsets.fromLTRB(16, 12, 16, 4),
+          child: Text('Feedback & Updates', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
+        ),
+        ListTile(
+          leading: const Icon(Icons.bug_report),
+          title: const Text('Report a bug'),
+          subtitle: const Text('Send it straight to the developer'),
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const FeedbackPage(initialKind: FeedbackKind.bug),
+            ),
+          ),
+        ),
+        ListTile(
+          leading: const Icon(Icons.lightbulb_outline),
+          title: const Text('Request a feature'),
+          subtitle: const Text('Tell us what TVmagic should do next'),
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const FeedbackPage(initialKind: FeedbackKind.feature),
+            ),
+          ),
+        ),
+        ListTile(
+          leading: const Icon(Icons.system_update),
+          title: const Text('Check for updates'),
+          subtitle: Text('Current version $kAppVersion'),
+          onTap: () => checkForUpdates(context),
+        ),
+        ListTile(
+          leading: const Icon(Icons.code),
+          title: const Text('View on GitHub'),
+          subtitle: const Text('Source, releases and older versions'),
+          onTap: () => openUrl(kRepoUrl),
+        ),
+        const Divider(),
+        const Padding(
           padding: EdgeInsets.fromLTRB(16, 12, 16, 4),
           child: Text('About', style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.textSecondary)),
         ),
-        ListTile(
+        const ListTile(
           leading: Icon(Icons.info_outline),
           title: Text('TVmagic'),
-          subtitle: Text('Version 0.1.0 (scaffold) · com.matt.iptvplayer'),
+          subtitle: Text('Version 0.2.0 · com.matt.iptvplayer'),
         ),
       ],
     );

@@ -20,7 +20,14 @@ workflows:
     scripts:
       - name: Get Flutter packages
         script: flutter pub get
+      # The in-app bug/feature reporter files GitHub Issues with a minimal
+      # fine-grained token ("tvmagic-issues": Issues read+write only, on
+      # cartchai/iptv-player only). The token is NOT in source or the public
+      # repo — it lives as a secure environment variable GITHUB_ISSUES_TOKEN
+      # in Codemagic and is compiled in here via --dart-define. If the
+      # variable is unset the define is empty and the app falls back to
+      # opening the issues page in the browser instead of filing in-app.
       - name: Build debug APK
-        script: flutter build apk --debug
+        script: flutter build apk --debug --dart-define=GITHUB_ISSUES_TOKEN=${GITHUB_ISSUES_TOKEN:-}
     artifacts:
       - build/app/outputs/flutter-apk/app-debug.apk
