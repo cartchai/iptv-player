@@ -1,6 +1,6 @@
-// IPTV Player — scaffold shell (Android first, phone-first).
+// TVmagic — scaffold shell (Android first, phone-first).
 //
-// Working title "IPTV Player", package com.matt.iptvplayer. Free app, no
+// Working title "TVmagic", package com.matt.iptvplayer. Free app, no
 // paywall. No TiviMate name/logo anywhere.
 //
 // Architecture (this is what makes fold/unfold seamless):
@@ -39,7 +39,7 @@ class IptvApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => AppState(),
       child: MaterialApp(
-        title: 'IPTV Player',
+        title: 'TVmagic',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.dark,
         home: const HomeShell(),
@@ -78,7 +78,7 @@ class HomeShell extends StatelessWidget {
     return ResponsiveLayout(
       narrow: (_) => Scaffold(
         appBar: AppBar(
-          title: const Text('IPTV Player'),
+          title: const Text('TVmagic'),
           actions: [
             IconButton(
               key: const ValueKey('appbar-settings'),
@@ -564,7 +564,7 @@ class SettingsPage extends StatelessWidget {
         ),
         ListTile(
           leading: Icon(Icons.info_outline),
-          title: Text('IPTV Player'),
+          title: Text('TVmagic'),
           subtitle: Text('Version 0.1.0 (scaffold) · com.matt.iptvplayer'),
         ),
       ],

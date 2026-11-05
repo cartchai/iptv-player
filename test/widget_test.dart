@@ -14,7 +14,7 @@ void main() {
     await tester.pumpWidget(const IptvApp());
     await tester.pumpAndSettle();
 
-    expect(find.text('IPTV Player'), findsWidgets);
+    expect(find.text('TVmagic'), findsWidgets);
     expect(find.text('No playlist yet'), findsOneWidget);
     expect(find.byKey(const ValueKey('bottom-nav')), findsOneWidget);
     expect(find.byKey(const ValueKey('add-playlist-btn')), findsOneWidget);

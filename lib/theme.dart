@@ -1,7 +1,7 @@
 // App theme — dark, cable-box style (TiviMate-like layout, our own look).
 //
 // Very dark background, one accent colour, large touch targets (>=48dp).
-// No TiviMate branding anywhere: neutral name "IPTV Player", our own blue
+// No TiviMate branding anywhere: neutral name "TVmagic", our own blue
 // accent (not TiviMate's teal), no copied logo/artwork.
 import 'package:flutter/material.dart';
 
