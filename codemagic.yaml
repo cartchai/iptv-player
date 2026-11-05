@@ -1,0 +1,26 @@
+# TVmagic — Codemagic cloud build (codemagic.yaml)
+#
+# Why this file exists (2026-11-05): the Workflow Editor has NO Java version
+# setting, and its default JDK is older than Java 21. Build #2 failed because
+# the better_player_android plugin ships Java 21 classes while the project
+# compiled with Java 17; build #3 failed the other way — the project now
+# needs Java 21 but the editor workflow's JDK rejected "source release: 21".
+# This YAML pins the whole build to Java 21, so plugin and app compile with
+# the same JDK. Do NOT remove `java: 21` unless the plugin stops needing it.
+# The file must live in the repo root. Codemagic detects it when a build is
+# triggered; pick the "Android Debug" workflow (not the editor's Default).
+workflows:
+  android-debug:
+    name: Android Debug
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      flutter: 3.47.9
+      java: 21
+    scripts:
+      - name: Get Flutter packages
+        script: flutter pub get
+      - name: Build debug APK
+        script: flutter build apk --debug
+    artifacts:
+      - build/app/outputs/flutter-apk/app-debug.apk
